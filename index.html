@@ -100,7 +100,152 @@
      </div></center>
      
      <center><div class="A1">
-     <span class="tekst">Abecadlo z nieba spadlo</span>
+     <span class="tekst">#include <iostream>
+#include <stdlib.h>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+
+int Losuj(int start, int stop);
+void LosujTab(int rozmiar, int tab[]);
+void TabDisp(int rozmiar, int tab[]);
+int TabMax(int rozmiar, int tab[]);
+int TabMin(int rozmiar, int tab[]);
+void TabSort(int rozmiar, int tab[]);
+
+int main()
+{
+    srand( time(NULL) );
+    const int r=100;
+    int tab[r];
+
+    LosujTab(r,tab); //losuje tablice
+    TabDisp(r, tab); //wyswietla tablice
+    cout<<"Maximum = "<<TabMax(r, tab)<<endl;
+    cout<<"Minimum = "<<TabMin(r, tab)<<endl;
+    TabSort(r, tab);
+    TabDisp(r, tab);
+
+    return 0;
+
+}
+
+int Losuj(int start, int stop)
+{
+    return rand()%((stop-start)+1) + start;
+}
+
+
+void LosujTab(int rozmiar, int tab[])
+{
+    for(int i=0; i<rozmiar; i++)
+    {
+         tab[i] = Losuj(0,999);
+    }
+}
+
+
+void TabDisp(int rozmiar, int tab[])
+{
+cout<<endl; int j=0;
+    for(int i=0; i<rozmiar; i++)
+    {
+     j++;
+        if(j==10)
+        {
+            cout<<endl;
+            j=0;
+        }
+        if(tab[i]<10)
+        {
+            cout<<"  "<<tab[i]<<" ";
+        }
+        else if(tab[i]<100)
+        {
+            cout<<" "<<tab[i]<<" ";
+        }
+        else
+        {
+            cout<<tab[i]<<" ";
+        }
+    }
+cout<<endl<<endl;
+}
+
+
+void TabSort(int rozmiar, int tab[])
+{
+    bool Zmiana = false;
+
+    do
+    {
+    Zmiana = false;
+    int j = 0;
+
+        for(int i=0; i<rozmiar-1-j; i++)
+        {
+            if(tab[i]>tab[i+1])
+            {
+                int a = tab[i];
+                tab[i] = tab[i+1];
+                tab[i+1] = a;
+
+                Zmiana = true;
+            }
+        }
+    j++;
+    }
+    while(Zmiana==true);
+}
+
+
+int TabMax(int rozmiar, int tab[])
+{
+   int tab2[rozmiar];
+
+    for(int i=0; i<rozmiar; i++)
+    {
+        tab2[i]=tab[i];
+    }
+
+    for(int i=0; i<rozmiar-1; i++)
+        {
+            if(tab2[i]>tab2[i+1])
+            {
+                int a = tab2[i];
+                tab2[i] = tab2[i+1];
+                tab2[i+1] = a;
+            }
+        }
+    return tab2[rozmiar-1];
+}
+
+
+int TabMin(int rozmiar, int tab[])
+{
+   int tab2[rozmiar];
+
+    for(int i=0; i<rozmiar; i++)
+    {
+        tab2[i]=tab[i];
+    }
+
+    for(int i=0; i<rozmiar; i++)
+        {
+            if(tab2[rozmiar-i]<tab2[rozmiar-i-1])
+            {
+                int a = tab2[rozmiar-i];
+                tab2[rozmiar-i] = tab2[rozmiar-i-1];
+                tab2[rozmiar-i-1] = a;
+            }
+        }
+    return tab2[0];
+}
+
+
+</span>
      
       
      </div></center>
